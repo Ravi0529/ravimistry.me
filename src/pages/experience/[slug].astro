@@ -28,24 +28,83 @@ const activeFile = `${experience.slug}.md`;
 >
   <div class="py-1">
     <MdLine n={line++}>
-      <span class="md-h1"># </span><span class="md-heading md-h1">{experience.title}</span>
+      <div class="flex flex-col md:flex-row gap-0 mb-6 mt-3">
+        {experience.image && (
+          <div class="md:w-1/3 shrink-0">
+            <img
+              src={experience.image}
+              alt={experience.title}
+              class="h-50 rounded-lg border border-zinc-200 dark:border-zinc-700 shadow-sm"
+            />
+            <p class="max-w-36 break-all text-sm leading-snug text-(--md-meta) mt-2">
+              <span class="md-marker">(</span><span class="md-link-url">{experience.image}</span><span class="md-marker">)</span>
+            </p>
+          </div>
+        )}
+
+        <div class="flex-1">
+          <div class="grid gap-2">
+            <div>
+              <span class="md-h1"># </span><span class="md-heading md-h1">{experience.title}</span>
+            </div>
+            <div>
+              <span class="md-bold-marker">**</span><span class="md-bold">Role</span><span class="md-bold-marker">:</span><span class="md-bold-marker">**</span>
+              <span class="md-text"> {experience.role}</span>
+            </div>
+            <div>
+              <span class="md-bold-marker">**</span><span class="md-bold">Location</span><span class="md-bold-marker">:</span><span class="md-bold-marker">**</span>
+              <span class="md-text"> {experience.location}</span>
+            </div>
+            <div>
+              <span class="md-bold-marker">**</span><span class="md-bold">Date</span><span class="md-bold-marker">:</span><span class="md-bold-marker">**</span>
+              <span class="md-text"> {experience.date}</span>
+            </div>
+            <div>
+              <span class="md-bold-marker">**</span><span class="md-bold">Duration</span><span class="md-bold-marker">:</span><span class="md-bold-marker">**</span>
+              <span class="md-text"> {experience.duration}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </MdLine>
+    <MdLine n={line++} />
+
+    <MdLine n={line++}>
+      <span class="md-bold-marker">**</span><span class="md-bold">Links</span><span class="md-bold-marker">:**</span>
+    </MdLine>
+    {experience.github && (
+      <MdLine n={line++}>
+        <span class="md-marker">- </span><span class="md-text">GitHub: </span>
+        <span class="md-marker">[</span>
+        <a href={experience.github} class="md-link-text" target="_blank" rel="noreferrer">View Repository</a>
+        <span class="md-marker">](</span>
+        <span class="md-link-url">{experience.github}</span>
+        <span class="md-marker">)</span>
+      </MdLine>
+    )}
+    {experience.paper && (
+      <MdLine n={line++}>
+        <span class="md-marker">- </span><span class="md-text">Research Paper: </span>
+        <span class="md-marker">[</span>
+        <a href={experience.paper} class="md-link-text" target="_blank" rel="noreferrer">Read Paper</a>
+        <span class="md-marker">](</span>
+        <span class="md-link-url">{experience.paper}</span>
+        <span class="md-marker">)</span>
+      </MdLine>
+    )}
+    <MdLine n={line++} />
+
+    <MdLine n={line++}>
+      <span class="md-h2">## </span><span class="md-heading md-h2">Overview</span>
     </MdLine>
     <MdLine n={line++} />
     <MdLine n={line++}>
-      <span class="md-bold-marker">**</span><span class="md-bold">Role</span><span class="md-bold-marker">:**</span>
-      <span class="md-text"> {experience.role}</span>
-    </MdLine>
-    <MdLine n={line++}>
-      <span class="md-bold-marker">**</span><span class="md-bold">Location</span><span class="md-bold-marker">:**</span>
-      <span class="md-text"> {experience.location}</span>
-    </MdLine>
-    <MdLine n={line++}>
-      <span class="md-bold-marker">**</span><span class="md-bold">Date</span><span class="md-bold-marker">:**</span>
-      <span class="md-text"> {experience.date}</span>
+      <span class="md-text">{experience.description}</span>
     </MdLine>
     <MdLine n={line++} />
+
     <MdLine n={line++}>
-      <span class="md-h2">## </span><span class="md-heading md-h2">Highlights</span>
+      <span class="md-h2">## </span><span class="md-heading md-h2">Key Highlights</span>
     </MdLine>
     <MdLine n={line++} />
     {
@@ -55,5 +114,92 @@ const activeFile = `${experience.slug}.md`;
         </MdLine>
       ))
     }
+    <MdLine n={line++} />
+
+    <MdLine n={line++}>
+      <span class="md-h2">## </span><span class="md-heading md-h2">Tech Stack</span>
+    </MdLine>
+    <MdLine n={line++} />
+    <MdLine n={line++}>
+      <span class="md-text">{experience.techStack.join(" | ")}</span>
+    </MdLine>
+    <MdLine n={line++} />
+
+    {experience.phases && (
+      <>
+        <MdLine n={line++}>
+          <span class="md-h2">## </span><span class="md-heading md-h2">Pipeline Architecture</span>
+        </MdLine>
+        <MdLine n={line++} />
+        <MdLine n={line++}>
+          <span class="md-text">The project implements a 9-phase end-to-end pipeline for cybersecurity log analysis and threat detection:</span>
+        </MdLine>
+        <MdLine n={line++} />
+        
+        {experience.phases.map((phase) => (
+          <>
+            <MdLine n={line++}>
+              <span class="md-h3">### </span><span class="md-heading md-h3">{phase.title}</span>
+            </MdLine>
+            <MdLine n={line++}>
+              <span class="md-meta">{phase.description}</span>
+            </MdLine>
+            {phase.items.map((item) => (
+              <MdLine n={line++}>
+                <span class="md-marker">- </span><span class="md-text">{item}</span>
+              </MdLine>
+            ))}
+            <MdLine n={line++} />
+          </>
+        ))}
+      </>
+    )}
+
+    <MdLine n={line++}>
+      <span class="md-h2">## </span><span class="md-heading md-h2">Key Achievements</span>
+    </MdLine>
+    <MdLine n={line++} />
+    <MdLine n={line++}>
+      <span class="md-marker">- </span><span class="md-bold-marker">**</span><span class="md-bold">Detection Performance</span><span class="md-bold-marker">:**</span>
+      <span class="md-text"> Achieved 0.91 weighted F1-score using hybrid anomaly detection combining rule-based rules with Isolation Forest and LOF algorithms.</span>
+    </MdLine>
+    <MdLine n={line++}>
+      <span class="md-marker">- </span><span class="md-bold-marker">**</span><span class="md-bold">RAG Implementation</span><span class="md-bold-marker">:**</span>
+      <span class="md-text"> Successfully implemented semantic search using Hugging Face embeddings and Qdrant to map suspicious sessions to MITRE ATT&CK techniques.</span>
+    </MdLine>
+    <MdLine n={line++}>
+      <span class="md-marker">- </span><span class="md-bold-marker">**</span><span class="md-bold">Analyst-Facing Outputs</span><span class="md-bold-marker">:**</span>
+      <span class="md-text"> Delivered comprehensive reports including IP-to-technique mapping, confidence-based reporting, and visual analytics.</span>
+    </MdLine>
+    <MdLine n={line++}>
+      <span class="md-marker">- </span><span class="md-bold-marker">**</span><span class="md-bold">Research Contribution</span><span class="md-bold-marker">:**</span>
+      <span class="md-text"> Authored research paper documenting the methodology, results, and implications for cybersecurity analytics.</span>
+    </MdLine>
+    <MdLine n={line++}>
+      <span class="md-marker">- </span><span class="md-bold-marker">**</span><span class="md-bold">Scalable Pipeline</span><span class="md-bold-marker">:**</span>
+      <span class="md-text"> Designed a modular, CLI-driven pipeline that can process large-scale security logs and produce reproducible results.</span>
+    </MdLine>
+    <MdLine n={line++} />
+
+    <MdLine n={line++}>
+      <span class="md-hr">---</span>
+    </MdLine>
+    <MdLine n={line++} />
+    <MdLine n={line++}>
+      <span class="md-text">For more details, check out the </span>
+      <span class="md-marker">[</span>
+      <a href="/resume" class="md-link-text">Resume</a>
+      <span class="md-marker">](</span>
+      <span class="md-link-url">/resume</span>
+      <span class="md-marker">)</span>
+      <span class="md-text"> page or explore other </span>
+      <span class="md-marker">[</span>
+      <a href="/experience" class="md-link-text">Experiences</a>
+      <span class="md-marker">](</span>
+      <span class="md-link-url">/experience</span>
+      <span class="md-marker">)</span>
+      <span class="md-text">.</span>
+    </MdLine>
+    <MdLine n={line++} />
   </div>
 </MarkdownEditorLayout>
