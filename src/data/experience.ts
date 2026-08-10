@@ -22,7 +22,7 @@ export type Experience = {
 export const experiences: Experience[] = [
   {
     slug: "isea-internship",
-    title: "ISEA RAG Attack Classification",
+    title: "Information Security Education & Awareness (ISEA)",
     section: "Internships",
     role: "Cyber Security & Generative AI Intern",
     location: "Ahmedabad, Gujarat, India",
