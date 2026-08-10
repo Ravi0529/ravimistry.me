@@ -1,0 +1,19 @@
+---
+interface Props {
+  n: number
+}
+
+const { n } = Astro.props
+---
+
+<div class="md-line group flex min-h-[1.625rem] font-mono text-sm leading-[1.625rem]">
+  <span
+    class="md-gutter w-12 shrink-0 select-none border-r border-[var(--editor-border)] bg-[var(--editor-gutter-bg)] pr-3 text-right text-[var(--editor-gutter)]"
+    aria-hidden="true"
+  >
+    {n}
+  </span>
+  <div class="md-content min-w-0 flex-1 break-words px-4 whitespace-pre-wrap">
+    <slot />
+  </div>
+</div>

@@ -1,0 +1,51 @@
+---
+interface Props {
+  n?: number
+}
+
+const { n = 1 } = Astro.props
+---
+
+<div class="md-line group flex min-h-[1.625rem] font-mono text-sm leading-[1.625rem]">
+  <span
+    class="md-gutter w-12 shrink-0 select-none border-r border-[var(--editor-border)] bg-[var(--editor-gutter-bg)] pr-3 text-right text-[var(--editor-gutter)]"
+    aria-hidden="true"
+  >
+    {n}
+  </span>
+  <div class="md-content min-w-0 flex-1 px-4 py-3">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
+      <div class="shrink-0 space-y-2">
+        <img
+          src="/me.png"
+          alt="Ravi Mistry"
+          class="h-56 rounded-lg border border-[var(--editor-border)] object-cover"
+        />
+        <p class="max-w-36 break-all text-sm leading-snug">
+          <span
+            class="md-marker">(</span
+          ><span class="md-link-url">/me.png</span><span class="md-marker">)</span>
+        </p>
+      </div>
+
+      <div class="min-w-0 flex-1 space-y-0 break-words">
+        <p>
+          <span class="md-h1"># </span><span class="md-heading md-h1">Ravi Mistry</span>
+        </p>
+        <p class="h-[1.625rem]">&nbsp;</p>
+        <p>
+          <span class="md-italic-marker">*</span><span class="md-italic">Software Engineer</span><span
+            class="md-italic-marker">*</span
+          >
+        </p>
+        <p class="h-[1.625rem]">&nbsp;</p>
+        <p>
+          <span class="md-text"
+            >Software engineer and Computer Science student at Gujarat Technological University,
+            building production-ready web applications with Generative AI and cybersecurity analytics.</span
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

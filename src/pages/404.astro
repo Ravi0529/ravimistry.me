@@ -1,0 +1,28 @@
+---
+import MarkdownEditorLayout from "@/layouts/MarkdownEditorLayout.astro";
+import MdLine from "@/components/markdown-editor/MdLine.astro";
+---
+
+<MarkdownEditorLayout title="Page not found" activeFile="">
+  <div class="py-1">
+    <MdLine n={1}>
+      <span class="md-meta">404</span>
+    </MdLine>
+    <MdLine n={2} />
+    <MdLine n={3}>
+      <span class="md-h1"># </span><span class="md-heading md-h1">Page not found</span>
+    </MdLine>
+    <MdLine n={4} />
+    <MdLine n={5}>
+      <span class="md-blockquote-marker">&gt; </span><span class="md-text">The page you are looking for does not exist. Return to the homepage to see the latest about Ravi's experience and projects.</span>
+    </MdLine>
+    <MdLine n={6} />
+    <MdLine n={7}>
+      <span class="md-h2">## </span><span class="md-heading md-h2">Quick links</span>
+    </MdLine>
+    <MdLine n={8} />
+    <MdLine n={9}>
+      <span class="md-marker">- </span><span class="md-marker">[</span><a href="/" class="md-link-text">ME.md</a><span class="md-marker">](</span><span class="md-link-url">/</span><span class="md-marker">)</span>
+    </MdLine>
+  </div>
+</MarkdownEditorLayout>

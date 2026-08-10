@@ -1,0 +1,16 @@
+---
+import MarkdownEditorLayout from "@/layouts/MarkdownEditorLayout.astro";
+import MdLine from "@/components/markdown-editor/MdLine.astro";
+---
+
+<MarkdownEditorLayout title="Resume | Ravi Mistry" activeFile="RESUME.md">
+  <div class="py-1">
+    <MdLine n={1}>
+      <span class="md-h1"># </span><span class="md-heading md-h1">Resume</span>
+    </MdLine>
+    <MdLine n={2} />
+    <MdLine n={3}>
+      <span class="md-text">Resume content coming soon.</span>
+    </MdLine>
+  </div>
+</MarkdownEditorLayout>

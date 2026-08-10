@@ -1,0 +1,82 @@
+/* GitHub Dark markdown syntax tokens (VS Code) */
+.md-h1,
+.md-h2,
+.md-h3 {
+  color: var(--md-heading);
+}
+
+.md-bold-marker {
+  color: var(--md-bold);
+}
+
+.md-bold {
+  color: var(--md-bold);
+  font-weight: 600;
+}
+
+.md-italic-marker {
+  color: var(--md-punctuation);
+}
+
+.md-italic {
+  color: var(--md-text);
+  font-style: italic;
+}
+
+.md-text {
+  color: var(--md-text);
+}
+
+.md-meta {
+  color: var(--md-meta);
+}
+
+.md-marker {
+  color: var(--md-marker);
+}
+
+.md-punctuation {
+  color: var(--md-punctuation);
+}
+
+.md-link-text {
+  color: var(--md-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.md-link-text:hover {
+  color: #79c0ff;
+}
+
+.md-link-url {
+  color: var(--md-string);
+}
+
+.md-string {
+  color: var(--md-string);
+}
+
+.md-blockquote-marker {
+  color: var(--md-punctuation);
+}
+
+.md-image-alt {
+  color: var(--md-string);
+}
+
+.md-line:hover .md-gutter {
+  color: var(--editor-fg);
+}
+
+.md-content:empty::after {
+  content: "\00a0";
+}
+
+.md-line {
+  align-items: flex-start;
+}
+
+.md-content a {
+  overflow-wrap: anywhere;
+}
