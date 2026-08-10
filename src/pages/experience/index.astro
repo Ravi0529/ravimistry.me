@@ -1,16 +1,40 @@
 ---
 import MarkdownEditorLayout from "@/layouts/MarkdownEditorLayout.astro";
 import MdLine from "@/components/markdown-editor/MdLine.astro";
+import { getExperienceSections } from "@/data/experience";
+
+const sections = getExperienceSections();
+let line = 1;
 ---
 
 <MarkdownEditorLayout title="Experience | Ravi Mistry" activeFile="EXPERIENCE.md">
   <div class="py-1">
-    <MdLine n={1}>
+    <MdLine n={line++}>
       <span class="md-h1"># </span><span class="md-heading md-h1">Experience</span>
     </MdLine>
-    <MdLine n={2} />
-    <MdLine n={3}>
-      <span class="md-text">Experience content coming soon.</span>
-    </MdLine>
+    <MdLine n={line++} />
+
+    {
+      [...sections.entries()].map(([section, items]) => (
+        <>
+          <MdLine n={line++}>
+            <span class="md-h2">## </span><span class="md-heading md-h2">{section}</span>
+          </MdLine>
+          <MdLine n={line++} />
+          {items.map((experience) => (
+            <MdLine n={line++}>
+              <span class="md-marker">- </span>
+              <span class="md-marker">[</span>
+              <a href={`/experience/${experience.slug}`} class="md-link-text">{experience.title}</a>
+              <span class="md-marker">](</span>
+              <span class="md-link-url">/experience/{experience.slug}</span>
+              <span class="md-marker">)</span>
+              <span class="md-text"> | {experience.role} — {experience.date}</span>
+            </MdLine>
+          ))}
+          <MdLine n={line++} />
+        </>
+      ))
+    }
   </div>
 </MarkdownEditorLayout>

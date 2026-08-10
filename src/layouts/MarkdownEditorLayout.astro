@@ -1,14 +1,17 @@
 ---
 import "../styles/global.css"
 import { MarkdownEditorShell } from "@/components/markdown-editor/MarkdownEditorShell"
+import type { EditorTab } from "@/lib/editor-tabs"
 
 interface Props {
   title: string
   description?: string
   activeFile: string
+  extraTab?: EditorTab
+  insertAfter?: string
 }
 
-const { title, description, activeFile } = Astro.props
+const { title, description, activeFile, extraTab, insertAfter } = Astro.props
 ---
 
 <!DOCTYPE html>
@@ -21,7 +24,12 @@ const { title, description, activeFile } = Astro.props
   </head>
   <body class="min-h-screen bg-background font-mono text-foreground antialiased">
     <main class="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 sm:py-12">
-      <MarkdownEditorShell activeFile={activeFile} client:load>
+      <MarkdownEditorShell
+        activeFile={activeFile}
+        extraTab={extraTab}
+        insertAfter={insertAfter}
+        client:load
+      >
         <slot />
       </MarkdownEditorShell>
     </main>

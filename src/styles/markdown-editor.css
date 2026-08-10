@@ -80,3 +80,26 @@
 .md-content a {
   overflow-wrap: anywhere;
 }
+
+/* Thin dark scrollbar for editor tab bar */
+.editor-tab-bar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--editor-border) var(--editor-tab-inactive);
+}
+
+.editor-tab-bar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.editor-tab-bar::-webkit-scrollbar-track {
+  background: var(--editor-tab-inactive);
+}
+
+.editor-tab-bar::-webkit-scrollbar-thumb {
+  background: var(--editor-border);
+  border-radius: 9999px;
+}
+
+.editor-tab-bar::-webkit-scrollbar-thumb:hover {
+  background: var(--editor-muted);
+}

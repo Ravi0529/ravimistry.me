@@ -1,16 +1,40 @@
 ---
 import MarkdownEditorLayout from "@/layouts/MarkdownEditorLayout.astro";
 import MdLine from "@/components/markdown-editor/MdLine.astro";
+import { getProjectSections } from "@/data/projects";
+
+const sections = getProjectSections();
+let line = 1;
 ---
 
 <MarkdownEditorLayout title="Projects | Ravi Mistry" activeFile="PROJECTS.md">
   <div class="py-1">
-    <MdLine n={1}>
+    <MdLine n={line++}>
       <span class="md-h1"># </span><span class="md-heading md-h1">Projects</span>
     </MdLine>
-    <MdLine n={2} />
-    <MdLine n={3}>
-      <span class="md-text">Projects content coming soon.</span>
-    </MdLine>
+    <MdLine n={line++} />
+
+    {
+      [...sections.entries()].map(([section, items]) => (
+        <>
+          <MdLine n={line++}>
+            <span class="md-h2">## </span><span class="md-heading md-h2">{section}</span>
+          </MdLine>
+          <MdLine n={line++} />
+          {items.map((project) => (
+            <MdLine n={line++}>
+              <span class="md-marker">- </span>
+              <span class="md-marker">[</span>
+              <a href={`/projects/${project.slug}`} class="md-link-text">{project.title}</a>
+              <span class="md-marker">](</span>
+              <span class="md-link-url">/projects/{project.slug}</span>
+              <span class="md-marker">)</span>
+              <span class="md-text"> | {project.tech} — {project.date}</span>
+            </MdLine>
+          ))}
+          <MdLine n={line++} />
+        </>
+      ))
+    }
   </div>
 </MarkdownEditorLayout>

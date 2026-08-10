@@ -1,0 +1,55 @@
+---
+import MarkdownEditorLayout from "@/layouts/MarkdownEditorLayout.astro";
+import MdLine from "@/components/markdown-editor/MdLine.astro";
+import { projects } from "@/data/projects";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+
+if (!project) {
+  return Astro.redirect("/404");
+}
+
+let line = 1;
+const activeFile = `${project.slug}.md`;
+---
+
+<MarkdownEditorLayout
+  title={`${project.title} | Projects | Ravi Mistry`}
+  activeFile={activeFile}
+  extraTab={{ label: activeFile, href: `/projects/${project.slug}` }}
+  insertAfter="PROJECTS.md"
+>
+  <div class="py-1">
+    <MdLine n={line++}>
+      <span class="md-h1"># </span><span class="md-heading md-h1">{project.title}</span>
+    </MdLine>
+    <MdLine n={line++} />
+    <MdLine n={line++}>
+      <span class="md-bold-marker">**</span><span class="md-bold">Stack</span><span class="md-bold-marker">:**</span>
+      <span class="md-text"> {project.tech}</span>
+    </MdLine>
+    <MdLine n={line++}>
+      <span class="md-bold-marker">**</span><span class="md-bold">Date</span><span class="md-bold-marker">:**</span>
+      <span class="md-text"> {project.date}</span>
+    </MdLine>
+    <MdLine n={line++} />
+    <MdLine n={line++}>
+      <span class="md-h2">## </span><span class="md-heading md-h2">Highlights</span>
+    </MdLine>
+    <MdLine n={line++} />
+    {
+      project.bullets.map((bullet) => (
+        <MdLine n={line++}>
+          <span class="md-marker">- </span><span class="md-text">{bullet}</span>
+        </MdLine>
+      ))
+    }
+  </div>
+</MarkdownEditorLayout>
