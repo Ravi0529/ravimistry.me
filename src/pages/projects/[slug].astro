@@ -28,28 +28,140 @@ const activeFile = `${project.slug}.md`;
 >
   <div class="py-1">
     <MdLine n={line++}>
-      <span class="md-h1"># </span><span class="md-heading md-h1">{project.title}</span>
+      <div class="flex flex-col md:flex-row gap-0 mb-6 mt-3">
+        {project.image && (
+          <div class="md:w-1/3 shrink-0">
+            <img
+              src={project.image}
+              alt={project.title}
+              class="h-50 w-50 rounded-lg border border-zinc-200 dark:border-zinc-700 shadow-sm"
+            />
+            <p class="max-w-36 break-all text-sm leading-snug text-(--md-meta) mt-2">
+              <span class="md-marker">(</span><span class="md-link-url">{project.image}</span><span class="md-marker">)</span>
+            </p>
+          </div>
+        )}
+
+        <div class="flex-1">
+          <div class="grid gap-2">
+            <div>
+              <span class="md-h1"># </span><span class="md-heading md-h1">{project.title}</span>
+            </div>
+            <div>
+              <span class="md-bold-marker">**</span><span class="md-bold">Stack</span><span class="md-bold-marker">:</span><span class="md-bold-marker">**</span>
+              <span class="md-text"> {project.tech}</span>
+            </div>
+            <div>
+              <span class="md-bold-marker">**</span><span class="md-bold">Date</span><span class="md-bold-marker">:</span><span class="md-bold-marker">**</span>
+              <span class="md-text"> {project.date}</span>
+            </div>
+            {project.github && (
+              <div>
+                <span class="md-bold-marker">**</span><span class="md-bold">GitHub</span><span class="md-bold-marker">:</span><span class="md-bold-marker">**</span>
+                <span class="md-text"> </span>
+                <span class="md-marker">[</span>
+                <a href={project.github} class="md-link-text" target="_blank" rel="noreferrer">View Repository</a>
+                <span class="md-marker">](</span>
+                <span class="md-link-url">{project.github}</span>
+                <span class="md-marker">)</span>
+              </div>
+            )}
+            {project.live && (
+              <div>
+                <span class="md-bold-marker">**</span><span class="md-bold">Live Demo</span><span class="md-bold-marker">:</span><span class="md-bold-marker">**</span>
+                <span class="md-text"> </span>
+                <span class="md-marker">[</span>
+                <a href={project.live} class="md-link-text" target="_blank" rel="noreferrer">View Live</a>
+                <span class="md-marker">](</span>
+                <span class="md-link-url">{project.live}</span>
+                <span class="md-marker">)</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </MdLine>
+
+    <MdLine n={line++}>
+      <span class="md-h2">## </span><span class="md-heading md-h2"
+        >Overview</span
+      >
     </MdLine>
     <MdLine n={line++} />
     <MdLine n={line++}>
-      <span class="md-bold-marker">**</span><span class="md-bold">Stack</span><span class="md-bold-marker">:**</span>
-      <span class="md-text"> {project.tech}</span>
-    </MdLine>
-    <MdLine n={line++}>
-      <span class="md-bold-marker">**</span><span class="md-bold">Date</span><span class="md-bold-marker">:**</span>
-      <span class="md-text"> {project.date}</span>
+      <span class="md-text">{project.description}</span>
     </MdLine>
     <MdLine n={line++} />
+
     <MdLine n={line++}>
-      <span class="md-h2">## </span><span class="md-heading md-h2">Highlights</span>
+      <span class="md-h2">## </span><span class="md-heading md-h2"
+        >Key Highlights</span
+      >
     </MdLine>
     <MdLine n={line++} />
     {
       project.bullets.map((bullet) => (
         <MdLine n={line++}>
-          <span class="md-marker">- </span><span class="md-text">{bullet}</span>
+          <>
+            <span class="md-marker">- </span>
+            <span class="md-text">{bullet}</span>
+          </>
         </MdLine>
       ))
     }
+    <MdLine n={line++} />
+
+    {
+      project.features && (
+        <>
+          <MdLine n={line++}>
+            <>
+              <span class="md-h2">## </span>
+              <span class="md-heading md-h2">Features</span>
+            </>
+          </MdLine>
+          <MdLine n={line++} />
+          {project.features.map((feature) => (
+            <MdLine n={line++}>
+              <span class="md-marker">- </span>
+              <span class="md-text">{feature}</span>
+            </MdLine>
+          ))}
+          <MdLine n={line++} />
+        </>
+      )
+    }
+
+    <MdLine n={line++}>
+      <span class="md-h2">## </span><span class="md-heading md-h2"
+        >Tech Stack</span
+      >
+    </MdLine>
+    <MdLine n={line++} />
+    <MdLine n={line++}>
+      <span class="md-text">{project.tech}</span>
+    </MdLine>
+    <MdLine n={line++} />
+
+    <MdLine n={line++}>
+      <span class="md-hr">---</span>
+    </MdLine>
+    <MdLine n={line++} />
+    <MdLine n={line++}>
+      <span class="md-text">For more details, check out the </span>
+      <span class="md-marker">[</span>
+      <a href="/projects" class="md-link-text">Projects</a>
+      <span class="md-marker">](</span>
+      <span class="md-link-url">/projects</span>
+      <span class="md-marker">)</span>
+      <span class="md-text"> page or explore other </span>
+      <span class="md-marker">[</span>
+      <a href="/experience" class="md-link-text">Experiences</a>
+      <span class="md-marker">](</span>
+      <span class="md-link-url">/experience</span>
+      <span class="md-marker">)</span>
+      <span class="md-text">.</span>
+    </MdLine>
+    <MdLine n={line++} />
   </div>
 </MarkdownEditorLayout>
